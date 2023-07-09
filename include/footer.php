@@ -3,7 +3,7 @@
 
   <footer>
     <hr>
-    Copyright &copy; (Votre nom) 2023
+    Copyright &copy; (Didy Toure) 2023
   </footer>
 
   

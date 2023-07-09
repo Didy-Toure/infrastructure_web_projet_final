@@ -1,4 +1,30 @@
-<?php include_once(__DIR__ . './include/header.php'); ?>
+<?php 
+include_once(__DIR__ . '/include/header.php');
+
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include_once (__DIR__ . '/include/config.php');
+
+$mysqli = new mysqli($host, $username, $password, $database);
+
+// Vérifier la connexion
+/*if ($mysqli->connect_errno) {
+    echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
+    exit();
+} else {
+    echo "Connexion réussie!!";
+}
+
+// Fermer la connexion lorsque vous avez terminé
+$mysqli->close();*/
+?>
+
+
+
+
+
+
 
 <main>
     <h1>Projet final</h1>
@@ -65,4 +91,5 @@
 
 </main>
 
-<?php include_once(__DIR__ . './include/footer.php'); ?>
+<!-- Footer -->
+<?php include_once(__DIR__ . '/include/footer.php'); ?>
