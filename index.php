@@ -32,60 +32,36 @@ $mysqli->close();*/
     <!-- Chalets sous forme de cartes -->
     <!-- Affiche 6 chalets ACTIFS et en PROMOTION en ordre aléatoire. Indice : https://www.mysqltutorial.org/select-random-records-database-table.aspx  -->
     <div class="flex">
-      <div class="card">
-        <img src="https://picsum.photos/id/380/500" alt="Chalet #1">
-        <div class="container">
-          <h4>Chalet #1</h4>
-          <span>à partir de 0,00 $</span>
-          <a href="#">Pour en savoir plus</a>
-        </div>
-      </div>
+      <?php
+      
+      $query = "SELECT * FROM chalets WHERE actif = 1 AND promo = 1 ORDER BY RAND() LIMIT 6";
+      $result = $mysqli->query($query);
 
-      <div class="card">
-        <img src="https://picsum.photos/id/10/500" alt="Chalet #2">
-        <div class="container">
-          <h4>Chalet #2</h4>
-          <span>à partir de 0,00 $</span>
-          <a href="#">Pour en savoir plus</a>
-        </div>
-      </div>
+      if ($result) {
+        while ($row = $result->fetch_assoc()) {
+          echo '<div class="card">';
+         
+          echo '<div class="card-body">';
+          echo '<h2>' . $row['nom'] . '</h2>';
+          echo '<p>' . $row['description'] . '</p>';
+          echo '<p>' . $row['prix_basse_saison'] . '</p>';
+          echo '<img src="https://picsum.photos/id/' . $row['id_picsum'] . '/500" alt="' . $row['nom'] . '">';
+          
+          
+          echo '<a href="fiche_chalet.php?id=' . $row['id'] . '" class="btn">Pour en savoir plus</a>';
+        
+          echo '</div>';
+          echo '</div>';
+        }
+        $result->free_result();
+      } else {
+        echo 'Erreur SQL : ' . $mysqli->error;
+      }
 
-      <div class="card">
-        <img src="https://picsum.photos/id/13/500" alt="Chalet #3">
-        <div class="container">
-          <h4>Chalet #3</h4>
-          <span>à partir de 0,00 $</span>
-          <a href="#">Pour en savoir plus</a>
-        </div>
-      </div>
 
-      <div class="card">
-        <img src="https://picsum.photos/id/14/500" alt="Chalet #4">
-        <div class="container">
-          <h4>Chalet #4</h4>
-          <span>à partir de 0,00 $</span>
-          <a href="#">Pour en savoir plus</a>
-        </div>
-      </div>
 
-      <div class="card">
-        <img src="https://picsum.photos/id/17/500" alt="Chalet #5">
-        <div class="container">
-          <h4>Chalet #5</h4>
-          <span>à partir de 0,00 $</span>
-          <a href="#">Pour en savoir plus</a>
-        </div>
-      </div>
 
-      <div class="card">
-        <img src="https://picsum.photos/id/28/500" alt="Chalet #6">
-        <div class="container">
-          <h4>Chalet #6</h4>
-          <span>à partir de 0,00 $</span>
-          <a href="#">Pour en savoir plus</a>
-        </div>
-      </div>
-
+      ?>
 
   </div>
 
