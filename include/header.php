@@ -1,3 +1,23 @@
+<?php
+$username ="root";
+$password = "mysql";
+$host="localhost";
+$database="Chalet_final2023";
+
+$mysqli = new mysqli($host, $username, $password, $database);
+
+// Vérifier la connexion
+/*if ($mysqli->connect_errno) {
+    echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
+    exit();
+} else {
+    echo "Connexion réussie!!";
+}*/
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr-CA">
 
@@ -7,7 +27,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Titre de la page (défi! rendre ce titre dynamique selon la page sélectionnée)</title>
+  <title> Vacances Québec | Chalet 2023 </title>
   
   <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -24,10 +44,21 @@
           <li>
             <a href="liste_chalets_par_region.php">Chalets par région &nbsp;<i class="arrow down"></i></a>
             <ul>
-              <li><a href="#">Région #1</a></li>
-              <li><a href="#">Région #2</a></li>
-              <li><a href="#">Région #3</a></li>
-              <li><a href="#">...</a></li>
+      <?php
+      $query = "SELECT id, nom FROM regions";
+      $result = $mysqli->query($query);
+
+      if ($result) {
+        while ($row = $result->fetch_assoc()) {
+          echo '<li><a href="liste_chalets_par_region.php?regions=' . $row['id'] . '">' . $row['nom'] . '</a></li>';
+        }
+        $result->free_result();
+      }
+      ?>
+
+               
+              
+
             </ul>
           </li>
           <li><a href="liste_chalets_en_promotion.php">Chalets en promotion</a></li>
@@ -40,6 +71,9 @@
             </ul>
           </li>
       </ul>
+
+    
+
 
       <!-- Formulaire de connexion -->
       <dialog id="dialog_login">         
