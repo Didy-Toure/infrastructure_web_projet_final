@@ -4,7 +4,7 @@
 <!-- Elle est volontairement vide, c'est à vous de la construire -->
 
 <!-- La mise en forme est à votre discrétion. -->
-<!-- Les informations à afficher sont le nom du chalet, la date (format de votre choix), la
+<!-- Les informations à afficher sont le nom du chalet, la date,le format de votre choix, la
 description longue, et le prix -->
 
 

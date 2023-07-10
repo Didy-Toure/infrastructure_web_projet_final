@@ -40,7 +40,8 @@ $mysqli = new mysqli($host, $username, $password, $database);
       <img src="https://picsum.photos/id/13/80" alt="logo">
       <ul>
           <li><a href="index.php">Accueil</a></li>
-          <li><a href="liste_chalets_par_region.php">Chalets à louer</a></li>
+          <li><a href="">Chalets à louer</a></li>
+
           <li>
             <a href="liste_chalets_par_region.php">Chalets par région &nbsp;<i class="arrow down"></i></a>
             <ul>
@@ -50,15 +51,13 @@ $mysqli = new mysqli($host, $username, $password, $database);
 
       if ($result) {
         while ($row = $result->fetch_assoc()) {
-          echo '<li><a href="liste_chalets_par_region.php?regions=' . $row['id'] . '">' . $row['nom'] . '</a></li>';
+          echo '<li><a href="liste_chalets_par_region.php?region=' . $row['id'] . '">' . $row['nom'] . '</a></li>';
         }
         $result->free_result();
       }
       ?>
 
                
-              
-
             </ul>
           </li>
           <li><a href="liste_chalets_en_promotion.php">Chalets en promotion</a></li>
