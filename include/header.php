@@ -40,7 +40,7 @@ $mysqli = new mysqli($host, $username, $password, $database);
       <img src="https://picsum.photos/id/13/80" alt="logo">
       <ul>
           <li><a href="index.php">Accueil</a></li>
-          <li><a href="">Chalets à louer</a></li>
+          <li><a href="liste_chalets_en_promotion.php">Chalets en promotion</a></li>
 
           <li>
             <a href="liste_chalets_par_region.php">Chalets par région &nbsp;<i class="arrow down"></i></a>
@@ -60,7 +60,7 @@ $mysqli = new mysqli($host, $username, $password, $database);
                
             </ul>
           </li>
-          <li><a href="liste_chalets_en_promotion.php">Chalets en promotion</a></li>
+          <li><a href="liste_chalets.php">Chalets à louer</a></li>
           <li><a href="module_personnel.php">Module personnel</a></li>
           <li>
             <a href="administration_chalets.php">Administration &nbsp;<i class="arrow down"></i></a>
