@@ -1,3 +1,21 @@
+<?php include_once(__DIR__ . './include/header.php'); 
+$username ="root";
+$password = "mysql";
+$host="localhost";
+$database="Chalet_final2023";
+
+$mysqli = new mysqli($host, $username, $password, $database);
+
+// Vérifier la connexion
+
+/*if ($mysqli->connect_errno) {
+    echo "Échec de connexion à la base de données MySQL: " . $mysqli->connect_error;
+    exit();
+} else {
+    echo "Connexion réussie!!";
+}*/
+
+?>
 <?php 
 include_once(__DIR__ . '/include/header.php');
 
