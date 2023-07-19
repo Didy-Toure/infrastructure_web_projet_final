@@ -17,6 +17,36 @@ $mysqli = new mysqli($host, $username, $password, $database);
 
 ?>
 
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['nom_utilisateur'];
+    $password = $_POST['mot_de_passe'];
+
+    
+    $requete = $mysqli->prepare("SELECT mot_de_passe FROM utilisateurs WHERE utilisateur = ?");
+    $requete->bind_param("s", $username);
+    $requete->execute();
+    $result = $requete->get_result();
+    $utilisateur = $result->fetch_assoc();
+
+    
+    if ($utilisateur && password_verify($password, $utilisateur["mot_de_passe"])) {
+  
+        $_SESSION["nom_utilisateur"] = $username;
+        header("Location: administration_chalets.php");
+        exit();
+    } else {
+        //message d'erreur
+        $messageErreur = "Erreur d'authentification";
+    }
+
+    $requete->close();
+}
+?>
+
+
 
 <!DOCTYPE html>
 <html lang="fr-CA">
@@ -71,17 +101,30 @@ $mysqli = new mysqli($host, $username, $password, $database);
           </li>
       </ul>
 
+
+
+
     
 
 
       <!-- Formulaire de connexion -->
-      <dialog id="dialog_login">         
-          <form>
-            <input type="text" placeholder="Utilisateur" >
-            <input type="password" placeholder="Mot de passe" >
+      <dialog id="dialog_login">   
+
+    
+          <form action="administration_chalets.php" method="POST">
+            <input type="text" name="nom_utilisateur" placeholder="Utilisateur">
+
+            <input type="password" name="mot_de_passe" placeholder="Mot de passe">
+
             <button>Connexion</button>
+            
+            
             <button id="close" class="annuler" aria-label="close" formnovalidate onclick="document.getElementById('dialog_login').close();">Annuler</button>
-          </form>
+<?php if (isset($messageErreur)) { ?>
+        <p><?php echo $messageErreur; ?></p>
+    <?php } ?>
+
+          </form> 
       </dialog>        
       <button onclick="document.getElementById('dialog_login').showModal();">Connexion</button>
     </nav>

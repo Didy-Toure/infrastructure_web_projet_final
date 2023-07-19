@@ -1,6 +1,20 @@
 <?php include_once(__DIR__ . './include/header.php'); ?>
 
-  <main>
+<?php
+session_start();
+
+if (!isset($_SESSION["nom_utilisateur"])) {
+    echo '<script type="text/javascript">alert("Erreur : Accès non autorisé. Veuillez vous connecter."); window.location.href = "index.php";</script>';
+    exit();
+}
+?>
+
+
+
+
+
+
+<main>
   
 	<h1>Administration - Chalets</h1>
 
@@ -13,6 +27,5 @@
 		Le menu Administration doit être présent seulement si l'utilisateur est connecté. <br>
 		Si un utilisateur non connecté essaie d'accéder à la page, un message d'erreur doit s'afficher.
 	</p>
-  </main>
+</main>
 
-<?php include_once(__DIR__ . './include/footer.php'); ?>
